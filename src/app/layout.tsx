@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   title: "SkyRoute Airlines | Book Flights, Compare Fares, Fly Smarter",
   description:
     "Search and book flights worldwide with SkyRoute Airlines. Compare fares across Economy, Business and First class, manage your trips, and explore travel offers.",
+  icons: {
+    icon: [
+      { url: "/images/original-logo.png", type: "image/png" },
+    ],
+    apple: "/images/original-logo.png",
+  },
 };
 
 export default function RootLayout({
