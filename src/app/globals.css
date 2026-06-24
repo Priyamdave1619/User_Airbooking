@@ -1,0 +1,308 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0b2545;
+
+  /* Brand palette */
+  --color-navy-950: #061429;
+  --color-navy-900: #0b2545;
+  --color-navy-800: #122f5c;
+  --color-navy-700: #1a3d73;
+  --color-navy-600: #234d8f;
+
+  --color-sky-600: #1d56e0;
+  --color-sky-500: #2e6bff;
+  --color-sky-400: #5b8aff;
+  --color-sky-100: #e3ebff;
+  --color-sky-50: #f1f5ff;
+
+  --color-amber-600: #d4880a;
+  --color-amber-500: #f5a524;
+  --color-amber-400: #ffbd4a;
+  --color-amber-100: #fff1d6;
+
+  --color-slate-900: #0f172a;
+  --color-slate-700: #334155;
+  --color-slate-600: #475569;
+  --color-slate-500: #64748b;
+  --color-slate-300: #cbd5e1;
+  --color-slate-200: #e2e8f0;
+  --color-slate-100: #f1f5f9;
+  --color-slate-50: #f8fafc;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-navy-950: var(--color-navy-950);
+  --color-navy-900: var(--color-navy-900);
+  --color-navy-800: var(--color-navy-800);
+  --color-navy-700: var(--color-navy-700);
+  --color-navy-600: var(--color-navy-600);
+
+  --color-sky-600: var(--color-sky-600);
+  --color-sky-500: var(--color-sky-500);
+  --color-sky-400: var(--color-sky-400);
+  --color-sky-100: var(--color-sky-100);
+  --color-sky-50: var(--color-sky-50);
+
+  --color-amber-600: var(--color-amber-600);
+  --color-amber-500: var(--color-amber-500);
+  --color-amber-400: var(--color-amber-400);
+  --color-amber-100: var(--color-amber-100);
+
+  --font-display: "Segoe UI", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+}
+
+/* ─── Base ─────────────────────────────────────────────────────────────────── */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+}
+
+/* ─── Brand card ────────────────────────────────────────────────────────────── */
+/* Elevated card with gradient top border — the app's signature visual motif */
+.brand-card {
+  position: relative;
+  border-radius: 1.5rem;
+  background: white;
+  box-shadow: 0 20px 60px -15px rgba(11, 37, 69, 0.18);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.brand-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+  border-radius: 1.5rem 1.5rem 0 0;
+  background: linear-gradient(90deg, var(--color-sky-500), var(--color-amber-500));
+}
+.brand-card:hover {
+  box-shadow: 0 28px 70px -12px rgba(11, 37, 69, 0.24);
+  transform: translateY(-2px);
+}
+
+/* ─── Animations ────────────────────────────────────────────────────────────── */
+
+/* Page / section entry */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.animate-fadeUp      { animation: fadeUp      0.45s cubic-bezier(0.22,1,0.36,1) both; }
+.animate-fadeIn      { animation: fadeIn      0.35s ease both; }
+.animate-slideLeft   { animation: slideInLeft  0.45s cubic-bezier(0.22,1,0.36,1) both; }
+.animate-slideRight  { animation: slideInRight 0.45s cubic-bezier(0.22,1,0.36,1) both; }
+.animate-scaleIn     { animation: scaleIn     0.4s  cubic-bezier(0.22,1,0.36,1) both; }
+
+/* Stagger helpers */
+.delay-75  { animation-delay: 75ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-225 { animation-delay: 225ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-375 { animation-delay: 375ms; }
+.delay-450 { animation-delay: 450ms; }
+
+/* Scroll-triggered fade-up via IntersectionObserver (applied by JS or manually) */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1), transform 0.55s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─── Micro-interactions ────────────────────────────────────────────────────── */
+
+/* Smooth link / button press */
+a, button {
+  transition: color 0.15s ease, background-color 0.15s ease,
+              border-color 0.15s ease, opacity 0.15s ease,
+              box-shadow 0.15s ease, transform 0.15s ease;
+}
+a:active, button:active {
+  transform: scale(0.97);
+}
+
+/* Input focus ring animation */
+input, select, textarea {
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+/* ─── Marquee ───────────────────────────────────────────────────────────────── */
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee-scroll 30s linear infinite;
+}
+
+/* ─── Live pulse ────────────────────────────────────────────────────────────── */
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+.animate-live {
+  animation: live-pulse 1.5s ease-in-out infinite;
+}
+
+/* ─── Seat map ──────────────────────────────────────────────────────────────── */
+.seat-btn {
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.15s ease;
+}
+.seat-btn:hover:not(:disabled) {
+  transform: scale(1.18);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+}
+
+/* ─── Reduced motion ────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Modern Pill Navbar ─────────────────────────────────────────────────────── */
+.navbar-pill {
+  height: 64px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* ─── Booking Search Card (improved) ────────────────────────────────────────── */
+.booking-card {
+  position: relative;
+  border-radius: 1.75rem;
+  background: white;
+  box-shadow:
+    0 0 0 1px rgba(11, 37, 69, 0.06),
+    0 8px 24px -4px rgba(11, 37, 69, 0.1),
+    0 32px 64px -16px rgba(11, 37, 69, 0.16);
+  overflow: hidden;
+}
+.booking-card-header {
+  background: linear-gradient(135deg, #f8faff 0%, #f1f5ff 100%);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+/* ─── OTP / Progress animations ─────────────────────────────────────────────── */
+@keyframes progress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+.animate-progress {
+  animation: progress 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes pulse-once {
+  0%   { transform: scale(0.8); opacity: 0; }
+  60%  { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-pulse-once {
+  animation: pulse-once 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── Page transition loader ─────────────────────────────────────────────────── */
+@keyframes topbar-load {
+  0%   { width: 0%; opacity: 1; }
+  80%  { width: 85%; opacity: 1; }
+  100% { width: 100%; opacity: 0; }
+}
+.page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-sky-500), var(--color-amber-500));
+  animation: topbar-load 1.2s ease-out forwards;
+  z-index: 9999;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ─── Skeleton shimmer ───────────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -500px 0; }
+  100% { background-position: 500px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e8edf5 50%, #f1f5f9 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: 0.5rem;
+}
+
+/* ─── Spinner ────────────────────────────────────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.animate-spin {
+  animation: spin 0.7s linear infinite;
+}
+
+/* ─── Dropdown slide animation ───────────────────────────────────────────────── */
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-8px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-dropIn {
+  animation: dropIn 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── Hover lift for cards ───────────────────────────────────────────────────── */
+.card-hover {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px -8px rgba(11, 37, 69, 0.2);
+}
+
+/* ─── Smooth page transitions ────────────────────────────────────────────────── */
+main {
+  animation: fadeUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Ensure the spacer from Navbar doesn't double up */
+header + * {
+  /* pages render below fixed header */
+}
