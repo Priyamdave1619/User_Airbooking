@@ -51,6 +51,15 @@ application, rebuilt with a component-based architecture.
 `footer.jsp` became the shared `Footer` component; the repeated navbar markup
 became the shared `Navbar` component.
 
+Screen shots:
+
+<img width="1454" height="753" alt="Screenshot 2026-06-30 at 8 04 45 PM" src="https://github.com/user-attachments/assets/5d07fd31-9691-44f6-b6f3-b47e838b6a0f" />
+<img width="1454" height="755" alt="Screenshot 2026-06-30 at 8 05 57 PM" src="https://github.com/user-attachments/assets/60b8dac9-b42b-4ce3-9b8b-f9db670a1e3b" />
+<img width="1455" height="756" alt="Screenshot 2026-06-30 at 8 06 23 PM" src="https://github.com/user-attachments/assets/1992c3c6-7797-4c31-a205-5b0c036e9d1a" />
+<img width="1452" height="757" alt="Screenshot 2026-06-30 at 8 07 29 PM" src="https://github.com/user-attachments/assets/1820f286-d201-4e35-9307-c81042d16e76" />
+<img width="1453" height="713" alt="Screenshot 2026-06-30 at 8 11 27 PM" src="https://github.com/user-attachments/assets/363888d6-b6c0-4744-985f-12ccbd98785c" />
+
+
 ## Component architecture
 
 ```
