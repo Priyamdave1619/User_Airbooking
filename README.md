@@ -1,6 +1,6 @@
 # SkyRoute Airlines — Next.js
 
-This is a full conversion of the original **Airbooking** Java/JSP flight‑booking
+This is a full conversion of the original **Airbooking** flight‑booking
 website into a modern **Next.js 16 (App Router) + TypeScript + Tailwind CSS v4**
 application, rebuilt with a component-based architecture.
 
