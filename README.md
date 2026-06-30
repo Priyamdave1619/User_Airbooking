@@ -1,55 +1,9 @@
-# SkyRoute Airlines — Next.js Conversion
+# SkyRoute Airlines — Next.js
 
 This is a full conversion of the original **Airbooking** Java/JSP flight‑booking
 website into a modern **Next.js 16 (App Router) + TypeScript + Tailwind CSS v4**
 application, rebuilt with a component-based architecture.
 
-## What changed
-
-- **Stack**: Java EE / JSP / raw JDBC → Next.js App Router, React 19, TypeScript, Tailwind CSS v4.
-- **Data**: All MySQL queries (`SELECT * FROM city`, login/registration tables) were
-  replaced with typed mock data in `src/lib/data/*.ts`, since this conversion uses
-  **mock/static data only** (no backend wired up).
-- **Auth**: Login/Registration/Logout are simulated client-side via `AuthContext`
-  (`src/context/AuthContext.tsx`), persisted to `localStorage` for demo continuity.
-  There is no real password hashing or server-side session — wire up a real auth
-  provider (NextAuth, Clerk, your own API) before using this in production.
-- **Design**: The original inline-styled, ad-hoc red/blue/pink markup was replaced
-  with a consistent navy/sky-blue/amber brand system, defined as Tailwind theme
-  tokens in `src/app/globals.css`. The signature element is the elevated
-  `.brand-card` (gradient-topped card) used for the booking search, auth forms,
-  and feature panels throughout the site.
-- **Fonts**: The original brief specified Google's "Poppins" font, but this sandbox
-  has no network access to `fonts.googleapis.com`, so the build uses system font
-  stacks instead (`--font-display` / `--font-sans` in `globals.css`). To restore
-  Poppins + Inter in an environment with internet access, swap these for
-  `next/font/google` imports in `src/app/layout.tsx`.
-
-## Pages (all 20 original JSP/HTML pages converted)
-
-| Route | Replaces |
-|---|---|
-| `/` | `index.jsp` |
-| `/login` | `login.jsp` |
-| `/register` | `Registration.jsp` |
-| `/forgot-password` | `Forgot-password.jsp`, `email_Forgotpassword.jsp` |
-| `/logout` | `Logout.jsp` |
-| `/search-results` | `booking1.jsp` |
-| `/passenger-details` | `passenger_details.jsp` (+ `phone-number country_code.jsp`) |
-| `/contact` | `contact.jsp` |
-| `/offers` | `offers.jsp` |
-| `/travel-info` | `travel info.jsp` |
-| `/flying-returns` | `Flying return.jsp` |
-| `/manage` | `Manage.jsp` |
-| `/economy-class` | `Economy class.jsp` |
-| `/newsletter-signup` | `Newsletter Signup.jsp` |
-| `/blog`, `/blog/[slug]` | `blog.html`, `single.html` |
-| `/destinations` | `destination.html` |
-| `/packages` | `package.html` |
-| `/testimonials` | `testimonial.html` |
-
-`footer.jsp` became the shared `Footer` component; the repeated navbar markup
-became the shared `Navbar` component.
 
 Screen shots:
 
@@ -57,7 +11,6 @@ Screen shots:
 <img width="1454" height="755" alt="Screenshot 2026-06-30 at 8 05 57 PM" src="https://github.com/user-attachments/assets/60b8dac9-b42b-4ce3-9b8b-f9db670a1e3b" />
 <img width="1455" height="756" alt="Screenshot 2026-06-30 at 8 06 23 PM" src="https://github.com/user-attachments/assets/1992c3c6-7797-4c31-a205-5b0c036e9d1a" />
 <img width="1452" height="757" alt="Screenshot 2026-06-30 at 8 07 29 PM" src="https://github.com/user-attachments/assets/1820f286-d201-4e35-9307-c81042d16e76" />
-<img width="1453" height="713" alt="Screenshot 2026-06-30 at 8 11 27 PM" src="https://github.com/user-attachments/assets/363888d6-b6c0-4744-985f-12ccbd98785c" />
 
 
 ## Component architecture
